@@ -18,7 +18,7 @@ public class EmployeeDatabase implements EmployeeRepository{
         employees.stream()
                 .filter(employee -> employee.getId().equals(e.getId()))
                 .findFirst()
-                .ifPresentOrElse(employee -> employees.add(employees.indexOf(employee),e), () -> employees.add(e));
+                .ifPresentOrElse(employee -> employees.set(employees.indexOf(employee),e), () -> employees.add(e));
         return e;
     }
 }
