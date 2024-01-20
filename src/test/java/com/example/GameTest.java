@@ -46,5 +46,11 @@ class GameTest {
     void given11RollShouldThrowIllegalArgumentException(){
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(11));
     }
+    @Test
+    @DisplayName("Total of roll() for each frame can not go over 10, should throw exception")
+    void totalOfRollForEachFrameCanNotGoOver10ShouldThrowException(){
+        game.roll(5);
+        assertThatIllegalArgumentException().isThrownBy(() -> game.roll(6));
+    }
 
 }
