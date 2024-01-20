@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
+    private int score;
     public int score(){
-        return 0;
+        return score;
     }
     public void roll(int pinsKnockedDown){
-
+        score =pinsKnockedDown;
     }
 }
