@@ -25,5 +25,13 @@ class GameTest {
 
         assertThat(game.score()).isOne();
     }
+    @Test
+    @DisplayName("When rolling twice, score should accumulate and return total")
+    void whenRollingTwiceScoreShouldAccumulateAndReturnTotal(){
+        game.roll(1);
+        game.roll(5);
+
+        assertThat(game.score()).isEqualTo(6);
+    }
 
 }

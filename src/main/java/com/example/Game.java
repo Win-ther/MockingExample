@@ -9,6 +9,6 @@ public class Game {
         return score;
     }
     public void roll(int pinsKnockedDown){
-        score =pinsKnockedDown;
+        score += pinsKnockedDown;
     }
 }
