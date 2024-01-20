@@ -33,5 +33,13 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(6);
     }
+    @Test
+    @DisplayName("After two rolls, currentFrame should increase")
+    void afterTwoRollsCurrentFrameShouldIncrease(){
+        game.roll(1);
+        game.roll(5);
+
+        assertThat(game.getCurrentFrame()).isEqualTo(2);
+    }
 
 }
