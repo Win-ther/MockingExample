@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class GameTest {
     Game game;
@@ -40,6 +40,11 @@ class GameTest {
         game.roll(5);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
+    }
+    @Test
+    @DisplayName("Given 11 roll() should throw illegalArgumentException")
+    void given11RollShouldThrowIllegalArgumentException(){
+        assertThatIllegalArgumentException().isThrownBy(() -> game.roll(11));
     }
 
 }

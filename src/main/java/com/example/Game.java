@@ -15,6 +15,8 @@ public class Game {
         return score;
     }
     public void roll(int pinsKnockedDown){
+        if (pinsKnockedDown >10 || pinsKnockedDown < 0)
+            throw new IllegalArgumentException("Illegal argument");
         score += pinsKnockedDown;
         roll++;
         if (roll %2 ==0 && roll != 0) {
