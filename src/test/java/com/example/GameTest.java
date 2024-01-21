@@ -50,6 +50,13 @@ class GameTest {
         assertThat(game.getCurrentFrame()).isEqualTo(2);
     }
     @Test
+    @DisplayName("After one roll and currentPins are 10, currentFrame shoud increase")
+    void afterOneRollAndCurrentPinsAre10CurrentFrameShoudIncrease(){
+        game.roll(10);
+
+        assertThat(game.getCurrentFrame()).isEqualTo(2);
+    }
+    @Test
     @DisplayName("Given 11 roll() should throw illegalArgumentException")
     void given11RollShouldThrowIllegalArgumentException(){
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(11));
