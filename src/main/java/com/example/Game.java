@@ -21,7 +21,7 @@ public class Game {
         score += pinsKnockedDown;
         currentPins += pinsKnockedDown;
         roll++;
-        if (roll % 2 == 0 && roll != 0) {
+        if ((roll == 2) ||currentPins == 10) {
             currentFrame++;
             roll = 0;
             currentPins = 0;

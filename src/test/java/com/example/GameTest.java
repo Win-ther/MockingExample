@@ -34,9 +34,17 @@ class GameTest {
         assertThat(game.score()).isEqualTo(6);
     }
     @Test
-    @DisplayName("After two rolls, currentFrame should increase")
+    @DisplayName("After two rolls and currentPins are below 10, currentFrame should increase")
     void afterTwoRollsCurrentFrameShouldIncrease(){
         game.roll(1);
+        game.roll(5);
+
+        assertThat(game.getCurrentFrame()).isEqualTo(2);
+    }
+    @Test
+    @DisplayName("After two rolls and currentPins are 10, currentFrame should increase")
+    void afterTwoRollsAndCurrentPinsAre10CurrentFrameShouldIncrease(){
+        game.roll(5);
         game.roll(5);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
@@ -47,8 +55,8 @@ class GameTest {
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(11));
     }
     @Test
-    @DisplayName("Total of roll() for each frame can not go over 10, should throw exception")
-    void totalOfRollForEachFrameCanNotGoOver10ShouldThrowException(){
+    @DisplayName("After two rolls and currentPins is over 10, should throw exception")
+    void afterTwoRollsAndCurrentPinsIsOver10ShouldThrowException(){
         game.roll(5);
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(6));
     }
