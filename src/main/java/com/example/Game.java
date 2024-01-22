@@ -19,7 +19,7 @@ public class Game {
         for (int i = 0; i < frames.size(); i++) {
             //ToDo: Om senaste rutan är Strike eller Spare, returnera score då Spare är 10+nästa roll och Strike är 10+2 nästa rolls
 
-            if (frames.get(i).equals("X")) {
+            if (frames.get(i).equals("X") && i != frames.size()-1) {
                 if (frames.get(i+1).equals("X")){
                     if (frames.get(i+2).equals("X")) {
                         score += 30;
@@ -32,14 +32,16 @@ public class Game {
                     score += 10     + Integer.parseInt(frames.get(i+1).substring(0,1))
                                     +Integer.parseInt(frames.get(i+1).substring(1,2));
                 }
-            }else if (frames.get(i).contains("/")) {
+            }else if (frames.get(i).contains("/") && i != frames.size()-1) {
                 if (frames.get(i+1).equals("X"))
                     score += 20;
                 else{
                     score += 10 + Integer.parseInt(frames.get(i+1).substring(0,1));
                 }
             }else {
-                score += Integer.parseInt(frames.get(i).substring(0,1))
+                if (frames.get(i).contains("/")||frames.get(i).equals("X"))
+                    score += 0;
+                else score += Integer.parseInt(frames.get(i).substring(0,1))
                         +Integer.parseInt(frames.get(i).substring(1,2));
             }
         }

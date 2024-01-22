@@ -86,5 +86,15 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(26);
     }
+    @Test
+    @DisplayName("If latest in frames is spare, it should not have any points yet")
+    void ifLatestInFramesIsSpareItShouldNotHaveAnyPointsYet(){
+        game.roll(5);
+        game.roll(3);
+        game.roll(3);
+        game.roll(7);
+
+        assertThat(game.score()).isEqualTo(8);
+    }
 
 }
