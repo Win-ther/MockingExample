@@ -133,26 +133,39 @@ class GameTest {
     @Test
     @DisplayName("If currentframe is 10 the game is over and will throw IndexOutOfBoundsException")
     void ifCurrentframeIs10TheGameIsOverAndWillThrowIndexOutOfBoundsException(){
-        game.roll(5);
-        game.roll(5);
-        game.roll(10);
-        game.roll(8);
-        game.roll(1);
-        game.roll(1);
-        game.roll(0);
-        game.roll(10);
-        game.roll(5);
-        game.roll(5);
-        game.roll(10);
-        game.roll(8);
-        game.roll(1);
-        game.roll(1);
-        game.roll(0);
+        rollNineFrames();
         game.roll(3);
         game.roll(3);
 
         assertThatIndexOutOfBoundsException().isThrownBy(() -> game.roll(6));
-
     }
 
+    @Test
+    @DisplayName("If current frame is 10 and strike, should be able to roll twice more")
+    void ifCurrentFrameIs10AndStrikeShouldBeAbleToRollTwiceMore(){
+        rollNineFrames();
+        game.roll(10);
+
+        assertThatNoException().isThrownBy(() -> game.roll(1));
+        assertThatNoException().isThrownBy(() -> game.roll(1));
+        assertThat(game.score()).isEqualTo(130);
+    }
+
+    private void rollNineFrames() {
+        game.roll(5);
+        game.roll(5);
+        game.roll(10);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
+        game.roll(0);
+        game.roll(10);
+        game.roll(5);
+        game.roll(5);
+        game.roll(10);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
+        game.roll(0);
+    }
 }
