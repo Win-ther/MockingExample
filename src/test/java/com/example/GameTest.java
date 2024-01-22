@@ -105,5 +105,14 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(8);
     }
+    @Test
+    @DisplayName("If given strike then spare, should return 20")
+    void ifGivenStrikeThenSpareShouldReturn20(){
+        game.roll(10);
+        game.roll(7);
+        game.roll(3);
+
+        assertThat(game.score()).isEqualTo(20);
+    }
 
 }
