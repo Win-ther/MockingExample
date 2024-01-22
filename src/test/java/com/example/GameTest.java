@@ -122,5 +122,14 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(0);
     }
+    @Test
+    @DisplayName("If given three strikes in a row, should return 30")
+    void ifGivenThreeStrikesInARowShouldReturn30(){
+        game.roll(10);
+        game.roll(10);
+        game.roll(10);
+
+        assertThat(game.score()).isEqualTo(30);
+    }
 
 }
