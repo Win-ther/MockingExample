@@ -17,8 +17,6 @@ public class Game {
     public int score() {
         int score = 0;
         for (int i = 0; i < frames.size(); i++) {
-            //ToDo: Om senaste rutan är Strike eller Spare, returnera score då Spare är 10+nästa roll och Strike är 10+2 nästa rolls
-
             if (frames.get(i).equals("X") && i != frames.size()-1) {
                 if (frames.get(i+1).equals("X")){
                     if (i+1 == frames.size()-1) {
@@ -52,6 +50,9 @@ public class Game {
 
     public void roll(int pinsKnockedDown) {
         roll++;
+        if (currentFrame > 10) {
+            throw new IndexOutOfBoundsException("The game is over");
+        }
         if (pinsKnockedDown > 10 || pinsKnockedDown < 0 || currentPins+pinsKnockedDown > 10) {
             throw new IllegalArgumentException("Illegal argument");
         }

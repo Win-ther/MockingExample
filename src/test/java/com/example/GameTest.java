@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class GameTest {
     Game game;
@@ -130,6 +129,30 @@ class GameTest {
         game.roll(10);
 
         assertThat(game.score()).isEqualTo(30);
+    }
+    @Test
+    @DisplayName("If currentframe is 10 the game is over and will throw IndexOutOfBoundsException")
+    void ifCurrentframeIs10TheGameIsOverAndWillThrowIndexOutOfBoundsException(){
+        game.roll(5);
+        game.roll(5);
+        game.roll(10);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
+        game.roll(0);
+        game.roll(10);
+        game.roll(5);
+        game.roll(5);
+        game.roll(10);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
+        game.roll(0);
+        game.roll(3);
+        game.roll(3);
+
+        assertThatIndexOutOfBoundsException().isThrownBy(() -> game.roll(6));
+
     }
 
 }
