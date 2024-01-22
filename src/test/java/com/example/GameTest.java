@@ -114,5 +114,13 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(20);
     }
+    @Test
+    @DisplayName("If given strike then strike, should return 0")
+    void ifGivenStrikeThenStrikeShouldReturn0(){
+        game.roll(10);
+        game.roll(10);
+
+        assertThat(game.score()).isEqualTo(0);
+    }
 
 }

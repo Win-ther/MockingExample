@@ -21,9 +21,11 @@ public class Game {
 
             if (frames.get(i).equals("X") && i != frames.size()-1) {
                 if (frames.get(i+1).equals("X")){
-                    if (frames.get(i+2).equals("X")) {
-                        score += 30;
-                    }else {
+                    if (i+1 == frames.size()-1) {
+                        score += 0;
+                    } else if (frames.get(i+2).equals("X")){
+                        score+=30;
+                    } else {
                         score += 20 + Integer.parseInt(frames.get(i+2).substring(0,1));
                     }
                 } else if (frames.get(i+1).contains("/")) {
