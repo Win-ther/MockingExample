@@ -19,11 +19,11 @@ class GameTest {
         assertThat(game.score()).isZero();
     }
     @Test
-    @DisplayName("When given roll value of 1, score should return 1")
-    void whenGivenRollValueOf1ScoreShouldReturn1(){
+    @DisplayName("When given roll value of 1 and not a second roll, score should return 0")
+    void whenGivenRollValueOf1AndNotASecondRollScoreShouldReturn0(){
         game.roll(1);
 
-        assertThat(game.score()).isOne();
+        assertThat(game.score()).isZero();
     }
     @Test
     @DisplayName("When rolling twice, score should accumulate and return total")
@@ -50,8 +50,8 @@ class GameTest {
         assertThat(game.getCurrentFrame()).isEqualTo(2);
     }
     @Test
-    @DisplayName("After one roll and currentPins are 10, currentFrame shoud increase")
-    void afterOneRollAndCurrentPinsAre10CurrentFrameShoudIncrease(){
+    @DisplayName("After one roll and currentPins are 10, currentFrame should increase")
+    void afterOneRollAndCurrentPinsAre10CurrentFrameShouldIncrease(){
         game.roll(10);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
@@ -66,6 +66,16 @@ class GameTest {
     void afterTwoRollsAndCurrentPinsIsOver10ShouldThrowException(){
         game.roll(5);
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(6));
+    }
+    @Test
+    @DisplayName("After spare, score should increase by next frames first roll")
+    void afterSpareScoreShouldIncreaseByNextFramesFirstRoll(){
+        game.roll(7);
+        game.roll(3);
+        game.roll(5);
+        game.roll(3);
+
+        assertThat(game.score()).isEqualTo(23);
     }
 
 }
