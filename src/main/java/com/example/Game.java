@@ -42,7 +42,7 @@ public class Game {
                 if (frames.get(i).contains("/")||frames.get(i).equals("X"))
                     score += 0;
                 else score += Integer.parseInt(frames.get(i).substring(0,1))
-                        +Integer.parseInt(frames.get(i).substring(1,2));
+                            +Integer.parseInt(frames.get(i).substring(1,2));
             }
         }
         return score;

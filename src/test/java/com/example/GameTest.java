@@ -96,5 +96,14 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(8);
     }
+    @Test
+    @DisplayName("If latest in frames is strike it should not have any points yet")
+    void ifLatestInFramesIsStrikeItShouldNotHaveAnyPointsYet(){
+        game.roll(5);
+        game.roll(3);
+        game.roll(10);
+
+        assertThat(game.score()).isEqualTo(8);
+    }
 
 }
