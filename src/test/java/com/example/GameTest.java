@@ -77,5 +77,14 @@ class GameTest {
 
         assertThat(game.score()).isEqualTo(23);
     }
+    @Test
+    @DisplayName("After strike and next two rolls are 5 and 3, score should increase by next two rolls")
+    void afterStrikeAndNextTwoRollsAre5And3ScoreShouldIncreaseByNextTwoRolls(){
+        game.roll(10);
+        game.roll(5);
+        game.roll(3);
+
+        assertThat(game.score()).isEqualTo(26);
+    }
 
 }
