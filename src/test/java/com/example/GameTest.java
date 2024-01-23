@@ -77,8 +77,8 @@ class GameTest {
         assertThat(game.score()).isEqualTo(23);
     }
     @Test
-    @DisplayName("After strike and next two rolls are 5 and 3, score should increase by next two rolls")
-    void afterStrikeAndNextTwoRollsAre5And3ScoreShouldIncreaseByNextTwoRolls(){
+    @DisplayName("After strike, score should increase by next two rolls")
+    void afterStrikeScoreShouldIncreaseByNextTwoRolls(){
         game.roll(10);
         game.roll(5);
         game.roll(3);
@@ -105,8 +105,8 @@ class GameTest {
         assertThat(game.score()).isEqualTo(8);
     }
     @Test
-    @DisplayName("If given strike then spare, should return 20")
-    void ifGivenStrikeThenSpareShouldReturn20(){
+    @DisplayName("If given strike then spare, should return 20 for Strike and nothng for spare")
+    void ifGivenStrikeThenSpareShouldReturn20ForStrikeAndNothingForSpare(){
         game.roll(10);
         game.roll(7);
         game.roll(3);
@@ -131,7 +131,7 @@ class GameTest {
         assertThat(game.score()).isEqualTo(30);
     }
     @Test
-    @DisplayName("If currentframe is 10 the game is over and will throw IndexOutOfBoundsException")
+    @DisplayName("If currentframe is 10, the game is over and will throw IndexOutOfBoundsException")
     void ifCurrentframeIs10TheGameIsOverAndWillThrowIndexOutOfBoundsException(){
         rollNineFrames();
         game.roll(3);
@@ -151,13 +151,23 @@ class GameTest {
         assertThat(game.score()).isEqualTo(130);
     }
     @Test
+    @DisplayName("If strike is given to frame 10, and two more strikes are rolled should return 148 score")
+    void ifStrikeIsGivenToFrame10AndTwoMoreStrikesAreRolledShouldReturn148Score(){
+        rollNineFrames();
+        game.roll(10);
+
+        assertThatNoException().isThrownBy(() -> game.roll(10));
+        assertThatNoException().isThrownBy(() -> game.roll(10));
+        assertThat(game.score()).isEqualTo(148);
+    }
+    @Test
     @DisplayName("If current frame is 10 and spare, should be able to roll once more")
     void ifCurrentFrameIs10AndSpareShouldBeAbleToRollOnceMore(){
         rollNineFrames();
         game.roll(9);
         game.roll(1);
 
-        assertThatNoException().isThrownBy(() -> game.roll(5));
+        assertThatNoException().isThrownBy(() -> game.roll(10));
         assertThat(game.score()).isEqualTo(133);
     }
 
