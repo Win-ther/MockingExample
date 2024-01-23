@@ -19,7 +19,9 @@ public class Game {
     public int score() {
         int score = 0;
         for (int i = 0; i < frames.size(); i++) {
-            if (i == 10)
+            if (i == 10 && frames.get(9).equals("X"))
+                break;
+            else if (i == 10 && frames.get(9).contains("/"))
                 return score;
             if (frames.get(i).equals("X") && i != frames.size() - 1) {
                 if (frames.get(i + 1).equals("X")) {
@@ -64,6 +66,9 @@ public class Game {
                 addToFrame((10 - pinsKnockedDown) + "/");
             } else if (roll == 2){
                 addToFrame(currentPins + "" + pinsKnockedDown);
+                gameOver = true;
+            }else if (roll == 1 && frames.get(currentFrame-2).contains("/")){
+                addToFrame(pinsKnockedDown+"");
                 gameOver = true;
             }
         } else if (currentFrame > 10) {

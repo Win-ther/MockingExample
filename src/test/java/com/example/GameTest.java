@@ -150,6 +150,16 @@ class GameTest {
         assertThatNoException().isThrownBy(() -> game.roll(1));
         assertThat(game.score()).isEqualTo(130);
     }
+    @Test
+    @DisplayName("If current frame is 10 and spare, should be able to roll once more")
+    void ifCurrentFrameIs10AndSpareShouldBeAbleToRollOnceMore(){
+        rollNineFrames();
+        game.roll(9);
+        game.roll(1);
+
+        assertThatNoException().isThrownBy(() -> game.roll(5));
+        assertThat(game.score()).isEqualTo(133);
+    }
 
     private void rollNineFrames() {
         game.roll(5);
