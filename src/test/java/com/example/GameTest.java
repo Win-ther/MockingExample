@@ -161,13 +161,23 @@ class GameTest {
         assertThat(game.score()).isEqualTo(148);
     }
     @Test
+    @DisplayName("If strike is given to frame 10 and one strike and a normal roll is given should return 139 score")
+    void ifStrikeIsGivenToFrame10AndOneStrikeAndANormalRollIsGivenShouldReturn139Score(){
+        rollNineFrames();
+        game.roll(10);
+
+        assertThatNoException().isThrownBy(() -> game.roll(10));
+        assertThatNoException().isThrownBy(() -> game.roll(1));
+        assertThat(game.score()).isEqualTo(139);
+    }
+    @Test
     @DisplayName("If current frame is 10 and spare, should be able to roll once more")
     void ifCurrentFrameIs10AndSpareShouldBeAbleToRollOnceMore(){
         rollNineFrames();
         game.roll(9);
         game.roll(1);
 
-        assertThatNoException().isThrownBy(() -> game.roll(10));
+        assertThatNoException().isThrownBy(() -> game.roll(5));
         assertThat(game.score()).isEqualTo(133);
     }
 

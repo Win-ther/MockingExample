@@ -105,7 +105,7 @@ public class Game {
         } else if (roll == 2) {
             addToFrame(currentPins + "" + pinsKnockedDown);
             gameOver = true;
-        } else if (roll == 1 && frames.get(currentFrame - 2).contains("/")) {
+        } else if (roll == 1 && frames.get(currentFrame - 2).contains("/") || currentFrame == 12) {
             addToFrame(pinsKnockedDown + "");
             gameOver = true;
         }
