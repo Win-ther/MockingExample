@@ -33,24 +33,24 @@ class GameTest {
         assertThat(game.score()).isEqualTo(6);
     }
     @Test
-    @DisplayName("After two rolls and currentPins are below 10, currentFrame should increase")
-    void afterTwoRollsCurrentFrameShouldIncrease(){
+    @DisplayName("Given two rolls and currentPins are below 10, currentFrame should increase")
+    void givenTwoRollsCurrentFrameShouldIncrease(){
         game.roll(1);
         game.roll(5);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
     }
     @Test
-    @DisplayName("After two rolls and currentPins are 10, currentFrame should increase")
-    void afterTwoRollsAndCurrentPinsAre10CurrentFrameShouldIncrease(){
+    @DisplayName("Given two rolls and currentPins are 10, currentFrame should increase")
+    void givenTwoRollsAndCurrentPinsAre10CurrentFrameShouldIncrease(){
         game.roll(5);
         game.roll(5);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
     }
     @Test
-    @DisplayName("After one roll and currentPins are 10, currentFrame should increase")
-    void afterOneRollAndCurrentPinsAre10CurrentFrameShouldIncrease(){
+    @DisplayName("Given one roll and currentPins are 10, currentFrame should increase")
+    void givenOneRollAndCurrentPinsAre10CurrentFrameShouldIncrease(){
         game.roll(10);
 
         assertThat(game.getCurrentFrame()).isEqualTo(2);
@@ -61,14 +61,14 @@ class GameTest {
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(11));
     }
     @Test
-    @DisplayName("After two rolls and currentPins is over 10, should throw exception")
-    void afterTwoRollsAndCurrentPinsIsOver10ShouldThrowException(){
+    @DisplayName("Given two rolls and pin total is over 10, should throw exception")
+    void givenTwoRollsAndPinTotalIsOver10ShouldThrowException(){
         game.roll(5);
         assertThatIllegalArgumentException().isThrownBy(() -> game.roll(6));
     }
     @Test
-    @DisplayName("After spare, score should increase by next frames first roll")
-    void afterSpareScoreShouldIncreaseByNextFramesFirstRoll(){
+    @DisplayName("Given spare, score should increase by next frames first roll")
+    void givenSpareScoreShouldIncreaseByNextFramesFirstRoll(){
         game.roll(7);
         game.roll(3);
         game.roll(5);
@@ -77,8 +77,8 @@ class GameTest {
         assertThat(game.score()).isEqualTo(23);
     }
     @Test
-    @DisplayName("After strike, score should increase by next two rolls")
-    void afterStrikeScoreShouldIncreaseByNextTwoRolls(){
+    @DisplayName("Given strike, score should increase by next two rolls")
+    void givenStrikeScoreShouldIncreaseByNextTwoRolls(){
         game.roll(10);
         game.roll(5);
         game.roll(3);
@@ -105,8 +105,8 @@ class GameTest {
         assertThat(game.score()).isEqualTo(8);
     }
     @Test
-    @DisplayName("If given strike then spare, should return 20 for Strike and nothng for spare")
-    void ifGivenStrikeThenSpareShouldReturn20ForStrikeAndNothingForSpare(){
+    @DisplayName("Given strike then spare, should return 20 for strike and nothing for spare")
+    void givenStrikeThenSpareShouldReturn20ForStrikeAndNothingForSpare(){
         game.roll(10);
         game.roll(7);
         game.roll(3);
@@ -131,8 +131,8 @@ class GameTest {
         assertThat(game.score()).isEqualTo(30);
     }
     @Test
-    @DisplayName("If currentframe is 10, the game is over and will throw IndexOutOfBoundsException")
-    void ifCurrentframeIs10TheGameIsOverAndWillThrowIndexOutOfBoundsException(){
+    @DisplayName("If currentframe is 10 and given rolls are not strike or spare, the game is over and will throw IndexOutOfBoundsException")
+    void ifCurrentframeIs10AndGivenRollsAreNotStrikeOrSpareTheGameIsOverAndWillThrowIndexOutOfBoundsException(){
         rollNineFrames();
         game.roll(3);
         game.roll(3);
@@ -161,7 +161,7 @@ class GameTest {
         assertThat(game.score()).isEqualTo(148);
     }
     @Test
-    @DisplayName("If strike is given to frame 10 and one strike and a normal roll is given should return 139 score")
+    @DisplayName("given strike strike 1 to frame 10, should return 139 score")
     void ifStrikeIsGivenToFrame10AndOneStrikeAndANormalRollIsGivenShouldReturn139Score(){
         rollNineFrames();
         game.roll(10);
