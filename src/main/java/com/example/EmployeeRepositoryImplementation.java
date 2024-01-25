@@ -3,10 +3,13 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDatabase implements EmployeeRepository{
+public class EmployeeRepositoryImplementation implements EmployeeRepository{
     private List<Employee> employees;
-    public EmployeeDatabase(){
+    public EmployeeRepositoryImplementation(){
         employees = new ArrayList<>();
+    }
+    public EmployeeRepositoryImplementation(List<Employee> employees){
+        this.employees = new ArrayList<>(employees);
     }
     @Override
     public List<Employee> findAll() {
