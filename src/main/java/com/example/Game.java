@@ -31,7 +31,7 @@ public class Game {
     }
 
     private int getPointsForStrikeAndSpare(int i, int score) {
-        //Check if Strike/Spare is in latest frame, if true it does not have points yet and returns score.
+        //Check if Strike/Spare is in latest frame, if it is, it does not have points yet.
         if (i != frames.size() - 1) {
             if (frames.get(i).equals("X"))
                 score = strikeBonusPoints(i, score);
@@ -52,6 +52,7 @@ public class Game {
 
     private int strikeBonusPoints(int i, int score) {
         if (frames.get(i + 1).equals("X")) {
+            //Checks if Strike is in second to last frame, if it is, current Strike does not have points yet
             if (i + 1 != frames.size() - 1) {
                 if (frames.get(i + 2).equals("X")) {
                     score += 30;
