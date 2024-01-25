@@ -33,15 +33,18 @@ class EmployeesTest {
         var result = employees.payEmployees();
 
         assertThat(result).isEqualTo(3);
+        assertThat(employeeRepository.findAll().stream().filter(Employee::isPaid).count()).isEqualTo(3);
         assertThat(bankService.payCalled).isTrue();
+
     }
     @Test
     @DisplayName("Given null instead of bankservice, payEmployees should return zero")
     void givenNullInsteadOfBankservicePayEmployeesShouldReturnZero(){
         employees = new Employees(employeeRepository,null);
-
+        employeeRepository.findAll().forEach(e -> e.setPaid(true));
         var result = employees.payEmployees();
 
         assertThat(result).isZero();
+        assertThat(employeeRepository.findAll().stream().filter(e -> !e.isPaid()).count()).isEqualTo(3);
     }
 }

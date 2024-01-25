@@ -52,4 +52,13 @@ class EmployeeRepositoryImplementationTest {
         assertThat(result).contains(e4);
         assertThat(result).doesNotContain(e2);
     }
+    @Test
+    @DisplayName("When save is called with employee object, should return same employee that was saved")
+    void whenSaveIsCalledWithEmployeeObjectShouldReturnSameEmployeeThatWasSaved(){
+        repository = new EmployeeRepositoryImplementation();
+
+        var result = repository.save(e1);
+
+        assertThat(result).isEqualTo(e1);
+    }
 }

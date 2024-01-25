@@ -84,7 +84,7 @@ public class Game {
 
     private void frameOneToNine(int pinsKnockedDown) {
         if (currentPins + pinsKnockedDown == 10 && roll == 2) {
-            addToFrame((10 - pinsKnockedDown) + "/");
+            addToFrame(currentPins + "/");
         } else if (currentPins + pinsKnockedDown == 10 && roll == 1) {
             addToFrame("X");
         } else if (roll == 2) {
