@@ -33,7 +33,7 @@ class EmployeesTest {
         var result = employees.payEmployees();
 
         assertThat(result).isEqualTo(3);
-        assertThat(employeeRepository.findAll().stream().filter(Employee::isPaid).count()).isEqualTo(3);
+        assertThat(employeeRepository.findAll()).extracting(Employee::isPaid).allMatch(paid -> paid);
         assertThat(bankService.payCalled).isTrue();
 
     }
@@ -45,6 +45,6 @@ class EmployeesTest {
         var result = employees.payEmployees();
 
         assertThat(result).isZero();
-        assertThat(employeeRepository.findAll().stream().filter(e -> !e.isPaid()).count()).isEqualTo(3);
+        assertThat(employeeRepository.findAll()).extracting(Employee::isPaid).allMatch(paid -> !paid);
     }
 }

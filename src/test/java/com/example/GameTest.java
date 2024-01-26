@@ -119,7 +119,7 @@ class GameTest {
         game.roll(10);
         game.roll(10);
 
-        assertThat(game.score()).isEqualTo(0);
+        assertThat(game.score()).isZero();
     }
     @Test
     @DisplayName("If given three strikes in a row, should return 30")
@@ -179,6 +179,27 @@ class GameTest {
 
         assertThatNoException().isThrownBy(() -> game.roll(5));
         assertThat(game.score()).isEqualTo(133);
+    }
+
+    @Test
+    @DisplayName("If all frames are given Strike, should  return 300 score")
+    void ifAllFramesAreGivenStrikeShouldReturn300Score() {
+        for (int i = 0; i < 13; i++) {
+            game.roll(10);
+        }
+
+        assertThat(game.score()).isEqualTo(300);
+    }
+
+    @Test
+    @DisplayName("If all frames are given 0, should return 0")
+    void ifAllFramesAreGiven0ShouldReturn0() {
+        for (int i = 0; i < 10; i++) {
+            game.roll(0);
+            game.roll(0);
+        }
+
+        assertThat(game.score()).isZero();
     }
 
     private void rollNineFrames() {
